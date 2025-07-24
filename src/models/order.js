@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { DeliveryPartner } from "./user";
-import Counter from "./counter";
+import { DeliveryPartner } from "./user.js";
+import Counter from "./counter.js";
 
 const orderSchema = new mongoose.Schema({
   orderId:{

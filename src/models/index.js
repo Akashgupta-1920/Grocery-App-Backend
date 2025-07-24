@@ -1,4 +1,4 @@
-import { Customer, DeliveryPartner, Admin } from "./user";
+import { Customer, DeliveryPartner, Admin } from "./user.js";
 import Branch from "./branch";
 import Product from "./products";
 import Category from "./category";
