@@ -4,9 +4,10 @@ import fastify from 'fastify';
 import { PORT } from './src/config/config.js';
 import fastifySocketIO from 'fastify-socket.io';
 import { registerRoutes } from './src/routes/index.js'
+import { admin, buildAdminRouter } from './src/config/setup.js';
 
 const start = async () => {
-  await connectDB(process.env.MONGODB_URL);
+  await connectDB(process.env.MONGO_URL);
 
   const app = fastify();
 
@@ -20,11 +21,13 @@ const start = async () => {
   })
   await registerRoutes(app)
 
+  await buildAdminRouter(app)
+
   app.listen({ port: PORT, host: '0.0.0.0' }, (err, addr) => {
     if (err) {
       console.error('Server failed to start:', err);
     } else {
-      console.log(`🚀 Grocery App running at ${addr}`);
+      console.log(`🚀 Grocery App running at ${addr}${admin.options.rootPath}`);
     }
   });
 
